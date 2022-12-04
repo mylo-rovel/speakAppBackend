@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  // previewFeatures = ["mongodb"]
+}
+
+model Room {
+  roomId   Int       @id @map("_id")
+  messages Message[]
+}
+
+model Message {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  orderID  BigInt
+  senderId String
+  targetId String
+  hour     String
+  date     DateTime @default(now())
+  room     Room     @relation(fields: [roomId], references: [roomId])
+  roomId   Int
+}
