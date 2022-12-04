@@ -15,8 +15,6 @@ oauthRouter.get('/login/callback',
     session: true,
 }), () => { console.log('Google called us back!'); });
 
-
-// http://localhost:3001/auth/logout
 oauthRouter.get('/logout', (req, res) => {
     console.log("\n\n\n\nlogout")
     req.logout({ keepSessionInfo: true }, () => {}); //Removes req.user and clears any logged in session

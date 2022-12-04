@@ -8,7 +8,9 @@ redisClient.on("connect", function () {
     console.log("redis conectado");
 })
 
-redisClient.on('error', (err) => console.log('Redis Client Error', err));
+redisClient.on('error', (err) => {
+    console.log('Redis Client Error', err)
+});
 
 const redisPrueba = async() => {
     await redisClient.set("prueba", "redis_ready_&_online")

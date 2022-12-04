@@ -2,11 +2,14 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "ts-start": "ts-node-esm ./src/server.ts",
-    "watch": "npx tsc --watch & nodemon -q dist/server.js"
+    "ts-build": "tsc",
+    "watch": "npx tsc --watch & nodemon -q dist/src/server.js",
+    "docker-compose-init": "sudo docker-compose up --build",
+    "docker-compose-shutDown": "sudo docker-compose down"
   },
   "keywords": [],
   "author": "",

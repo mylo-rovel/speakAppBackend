@@ -1,0 +1,29 @@
+{
+  "name": "speakappbackend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+
+    "start-ChattingCore": "npm run docker-compose-init --prefix ChattingCore",
+    "start-CentralCore": "npm run docker-compose-init --prefix CentralCore",
+    "start-backend": "npm run start-CentralCore & npm run start-ChattingCore",
+
+    "shutDown-ChattingCore": "npm run docker-compose-shutDown --prefix ChattingCore",
+    "shutDown-CentralCore": "npm run docker-compose-shutDown --prefix CentralCore",
+    "shutDown-backend": "npm run shutDown-ChattingCore & npm run shutDown-CentralCore"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mylo-rovel/shutAppBackend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mylo-rovel/shutAppBackend/issues"
+  },
+  "homepage": "https://github.com/mylo-rovel/shutAppBackend#readme"
+}
