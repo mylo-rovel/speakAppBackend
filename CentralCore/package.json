@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docker-compose-init": "sudo docker-compose up --build",
+    "docker-compose-init": "sudo docker-compose up --build --detach",
     "docker-compose-shutDown": "sudo docker-compose down"
   },
   "keywords": [],

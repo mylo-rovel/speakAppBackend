@@ -1,9 +1,12 @@
 import http from "http";
 import { app }  from "./web/app.js";
 import { SocketController } from "./sockets/socket.controller.js";
+import {redisPruebaInicial} from "./databases/redis_db.js";
 import * as dotenv from 'dotenv';
-
 dotenv.config();
+
+
+redisPruebaInicial()
 
 const PORT = process.env["API1_PORT"] || 3002;
 

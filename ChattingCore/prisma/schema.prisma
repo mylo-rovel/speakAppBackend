@@ -17,12 +17,18 @@ model Room {
 }
 
 model Message {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  orderID  BigInt
-  senderId String
-  targetId String
-  hour     String
-  date     DateTime @default(now())
-  room     Room     @relation(fields: [roomId], references: [roomId])
-  roomId   Int
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  content    String
+  positionNo BigInt
+  senderId   BigInt
+  hour       String
+  date       DateTime @default(now())
+  room       Room     @relation(fields: [roomId], references: [roomId])
+  roomId     Int
+}
+
+model User {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  favPokemon String
+  age        BigInt
 }

@@ -31,5 +31,5 @@ passport.deserializeUser(deserializeUserFn);
 //! (checkLoggedIn) => route we want to protect
 //? --------------------   ROUTES   --------------------
 app.use('/auth', oauthRouter);
-app.use('/chats', messagesRouter);
+app.use('/messages', messagesRouter);
 app.use('/api/pokemon', checkLoggedIn, pokemonRouter);
