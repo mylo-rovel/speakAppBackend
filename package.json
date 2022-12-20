@@ -6,13 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
 
+    "watch-ChattingCore": "npm run ",
+
     "start-ChattingCore": "npm run docker-compose-init --prefix ChattingCore",
     "start-CentralCore": "npm run docker-compose-init --prefix CentralCore",
     "start-backend": "npm run start-CentralCore & npm run start-ChattingCore",
 
-    "shutDown-ChattingCore": "npm run docker-compose-shutDown --prefix ChattingCore",
-    "shutDown-CentralCore": "npm run docker-compose-shutDown --prefix CentralCore",
-    "shutDown-backend": "npm run shutDown-ChattingCore & npm run shutDown-CentralCore"
+    "shutdown-ChattingCore": "npm run docker-compose-shutdown --prefix ChattingCore",
+    "shutdown-CentralCore": "npm run docker-compose-shutdown --prefix CentralCore",
+    "shutdown-backend": "npm run shutdown-ChattingCore & npm run shutdown-CentralCore"
 
   },
   "repository": {

@@ -9,7 +9,7 @@
     "ts-build": "tsc",
     "watch": "npx tsc --watch & nodemon -q dist/server.js",
     "docker-compose-init": "sudo docker-compose up --build --detach",
-    "docker-compose-shutDown": "sudo docker-compose down"
+    "docker-compose-shutdown": "sudo docker-compose down"
   },
   "keywords": [],
   "author": "",

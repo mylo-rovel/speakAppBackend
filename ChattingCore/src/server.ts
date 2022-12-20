@@ -2,9 +2,11 @@ import http from "http";
 import { app }  from "./web/app.js";
 import { SocketController } from "./sockets/socket.controller.js";
 import {redisPruebaInicial} from "./databases/redis_db.js";
+import { PrismaClient } from '@prisma/client'
 import * as dotenv from 'dotenv';
-dotenv.config();
 
+export const prisma = new PrismaClient({log:["query"]});
+dotenv.config();
 
 redisPruebaInicial()
 

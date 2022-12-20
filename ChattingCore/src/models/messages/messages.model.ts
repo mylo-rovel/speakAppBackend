@@ -1,21 +1,24 @@
+import { prisma } from '../../server.js'
 import { MessageReq } from '../../types/typeGuards/messages.requests'
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+
 
 export const SaveNewMessageInRoom = async (req: MessageReq) => {
-    // const targetRoom = await prisma.room.findUnique({
-    //     where: { 
-    //         roomId: req.roomId 
-    //     }
-    // })
-    // console.log(targetRoom);
-    prisma.$connect()
-    return await prisma.user.create({
+    const targetRoom = await prisma.room.findUnique({ where: { roomId: 1 } })
+    if (!targetRoom) throw new Error("null room");
+
+    const auxDateObj = new Date()
+    const [currentHour, currentMinute] = [auxDateObj.getHours(), auxDateObj.getMinutes()];
+
+    const newMessage = await prisma.message.create({
         data: {
-            favPokemon: req.content,
-            age: (Math.floor(Math.random()*20)+40)
+            content: req.content,
+            senderId: req.senderId,
+            hour: `${currentHour}:${currentMinute}`,
+            positionNo: 2,
+            room: {
+                connect: targetRoom
+            }
         }
     })
-    .then((value) => value)
-    .catch((reason) => console.log("\n\nRAZON\n", reason))
+    return newMessage;
 }

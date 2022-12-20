@@ -19,8 +19,8 @@ model Room {
 model Message {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   content    String
-  positionNo BigInt
-  senderId   BigInt
+  positionNo Int
+  senderId   Int
   hour       String
   date       DateTime @default(now())
   room       Room     @relation(fields: [roomId], references: [roomId])
@@ -28,7 +28,6 @@ model Message {
 }
 
 model User {
-  id         String @id @default(auto()) @map("_id") @db.ObjectId
-  favPokemon String
-  age        BigInt
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  // age Int
 }

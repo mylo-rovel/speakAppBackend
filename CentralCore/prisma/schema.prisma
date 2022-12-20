@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Login {
+  id         Int    @id @default(autoincrement())
+  loginemail String @unique
+  user       User?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id                Int       @id @default(autoincrement())
+  user              Login     @relation(fields: [useremail], references: [loginemail])
+  //* in a 1-1 relationship we have to relate an unique field with another unique field
+  //* also, in both models we have to use the other part model as type
+  useremail         String    @unique
+  username          String    @unique
+  profilePic        Bytes?
+  participatingRoom Room[]
+  archives          Archive[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Room {
+  id             Int       @id @default(autoincrement())
+  roomName       String
+  isPersonalChat Boolean
+  members        User[]
+  archives       Archive[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Archive {
+  id          Int   @id @default(autoincrement())
+  //* we have to know who sended the resource
+  sender      User  @relation(fields: [senderId], references: [id])
+  senderId    Int
+  //* we have to know to where we have to send it
+  storedIn    Room  @relation(fields: [roomId], references: [id])
+  roomId      Int
+  archiveData Bytes
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
